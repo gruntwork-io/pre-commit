@@ -1,0 +1,31 @@
+# This configuration file allows our pre-commit hooks to be used with pre-commit: http://pre-commit.com/
+
+- id: terraform-fmt
+  name: Terraform fmt
+  description: Rewrites all Terraform configuration files to a canonical format.
+  entry: hooks/terraform-fmt.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+
+- id: shellcheck
+  name: Shellcheck Bash Linter
+  description: Performs linting on bash scripts
+  entry: hooks/shellcheck.sh
+  language: script
+
+- id: gofmt
+  name: gofmt
+  description: Gofmt formats Go programs.
+  entry: hooks/gofmt.sh
+  language: script
+  files: \.go$
+  exclude: vendor\/.*$
+
+- id: golint
+  name: golint
+  description: Golint is a linter for Go source code.
+  entry: hooks/golint.sh
+  language: script
+  files: \.go$
+  exclude: vendor\/.*$
