@@ -18,7 +18,7 @@ In each of your repos, add a file called `.pre-commit-config.yml` with the foll
 ```yaml
 repos:
   - repo: https://github.com/gruntwork-io/pre-commit
-    sha: <VERSION> # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+    rev: <VERSION> # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
     hooks:
       - id: terraform-fmt
       - id: shellcheck
