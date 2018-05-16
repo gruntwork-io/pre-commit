@@ -22,6 +22,14 @@
   files: \.go$
   exclude: vendor\/.*$
 
+- id: goimports
+  name: goimports
+  description: Goimports updates imports and formats in the same style as gofmt
+  entry: hooks/goimports.sh
+  language: script
+  files: \.go$
+  exclude: vendor\/.*$
+
 - id: golint
   name: golint
   description: Golint is a linter for Go source code.
