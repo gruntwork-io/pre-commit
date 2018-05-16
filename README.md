@@ -62,3 +62,13 @@ pre-commit run --all-files
 
 If all the hooks pass, the last command will exit with an exit code of 0. If any of the hooks make changes (e.g.,
 because files are not formatted), the last command will exit with a code of 1, causing the build to fail.
+
+
+
+
+
+## License
+
+This code is released under the Apache 2.0 License. Please see [LICENSE](LICENSE) and [NOTICE](NOTICE) for more details.
+
+Copyright &copy; 2018 Gruntwork, Inc.
