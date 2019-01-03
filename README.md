@@ -9,6 +9,7 @@ supported hooks are:
 * **shellcheck**: Run [`shellcheck`](https://www.shellcheck.net/) to lint files that contain a bash [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
 * **gofmt**: Automatically run `gofmt` on all Golang code (`*.go` files).
 * **golint**: Automatically run `golint` on all Golang code (`*.go` files)
+* **yapf**: Automatically run [`yapf`](https://github.com/google/yapf) on all python code (`*.py` files).
 
 
 
