@@ -11,6 +11,6 @@ readonly STYLE="{BASED_ON_STYLE: google, ALIGN_CLOSING_BRACKET_WITH_VISUAL_INDEN
 
 for file in "$@"; do
   if [[ "$file" =~ \.py$ ]]; then
-    yapf -ri --style="$STYLE" "$(dirname "$file")"
+    yapf -ri --style="$STYLE" "$file"
   fi
 done
