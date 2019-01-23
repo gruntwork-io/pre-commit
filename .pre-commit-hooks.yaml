@@ -37,3 +37,11 @@
   language: script
   files: \.go$
   exclude: vendor\/.*$
+
+- id: yapf
+  name: yapf
+  description: yapf (Yet Another Python Formatter) is a python formatter from Google.
+  entry: hooks/yapf.sh
+  language: script
+  files: \.py$
+  exclude: __pycache__\/.*$
