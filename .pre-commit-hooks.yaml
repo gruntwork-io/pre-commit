@@ -44,4 +44,8 @@
   entry: hooks/yapf.sh
   language: script
   files: \.py$
-  exclude: __pycache__\/.*$
+  exclude: >
+    (?x)^(
+      \.tox\/.*$|
+      __pycache__\/.*$
+    )$
