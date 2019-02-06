@@ -49,3 +49,10 @@
       \.tox\/.*$|
       __pycache__\/.*$
     )$
+
+- id: helmlint
+  name: helmlint
+  description: Run helm lint, a linter for helm charts
+  entry: hooks/helmlint.sh
+  language: script
+  files: \.((ya?ml)|(tpl))$
