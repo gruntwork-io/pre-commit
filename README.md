@@ -10,6 +10,8 @@ supported hooks are:
 * **gofmt**: Automatically run `gofmt` on all Golang code (`*.go` files).
 * **golint**: Automatically run `golint` on all Golang code (`*.go` files)
 * **yapf**: Automatically run [`yapf`](https://github.com/google/yapf) on all python code (`*.py` files).
+* **helmlint** Automatically run [`helm lint`](https://github.com/helm/helm/blob/master/docs/helm/helm_lint.md) on your
+  helm charts.
 
 
 
