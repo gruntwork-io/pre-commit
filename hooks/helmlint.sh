@@ -47,6 +47,11 @@ chart_path() {
     return 0
   fi
   if [[ "$(basename "$changed_file")" == "Chart.yaml" ]]; then
+    chart_path_return="$changed_file_dir"
+    log "Chart path found: $chart_path_return"
+    return 0
+  fi
+  if [[ -f "$changed_file/Chart.yaml" ]]; then
     chart_path_return="$changed_file"
     log "Chart path found: $chart_path_return"
     return 0
