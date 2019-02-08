@@ -110,11 +110,24 @@ for file in "$@"; do
   file_chart_path=$(chart_path "$file")
   debug "Resolved $file to chart path $file_chart_path"
 
+  # The chart values.yaml file may not have all the values defined to enforce default values, which will cause the
+  # linter to fail. To support this, this pre-commit hook looks for a special values file called `linter_values.yaml`
+  # which should define the additional values that will be fed to the linter.
+  if [[ -f "$file_chart_path/linter_values.yaml" ]]; then
+    linter_values_arg="$file_chart_path/linter_values.yaml"
+  else
+    linter_values_arg=""
+  fi
+
   if [[ ! -z "$file_chart_path" ]]; then
     if contains_element "$file_chart_path" "${seen_chart_paths[@]}"; then
       debug "Already linted $file_chart_path"
-    else
+    elif [[ -z "$linter_values_arg" ]]; then
       helm lint "$file_chart_path"
+      seen_chart_paths+=( "$file_chart_path" )
+    else
+      # Combine both linter_values.yaml and values.yaml
+      helm lint -f "$file_chart_path/values.yaml" -f "$linter_values_arg" "$file_chart_path"
       seen_chart_paths+=( "$file_chart_path" )
     fi
   fi
