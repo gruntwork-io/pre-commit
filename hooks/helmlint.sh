@@ -123,7 +123,7 @@ for file in "$@"; do
     if contains_element "$file_chart_path" "${seen_chart_paths[@]}"; then
       debug "Already linted $file_chart_path"
     else
-      helm lint "$file_chart_path"
+      helm lint -f "$linter_values" "$file_chart_path"
       seen_chart_paths+=( "$file_chart_path" )
     fi
   fi
