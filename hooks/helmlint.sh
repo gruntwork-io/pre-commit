@@ -3,9 +3,28 @@
 set -e
 
 # Run helm lint on the chart path.
-# helm lint can only be run on the root path of a chart, so this pre-commit hook will take the changed files and resolve
-# it to the helm chart path. The helm chart path is determined by a heuristic: it is the directory containing the
-# Chart.yaml file.
+# A typical helm chart directory structure looks as follows:
+#
+# └── root
+#     ├── README.md
+#     ├── Chart.yaml
+#     ├── charts
+#     │   └── postgres-9.5.6.tar.gz
+#     └── templates
+#         ├── deployment.yaml
+#         ├── service.yaml
+#         └── _helpers.tpl
+#
+# The `Chart.yaml` file is metadata that helm uses to index the chart, and is added to the release info. It includes things
+# like `name`, `version`, and `maintainers`.
+# The `charts` directory are subcharts / dependencies that are deployed with the chart.
+# The `templates` directory is what contains the go templates to render the Kubernetes resource yaml. Also includes
+# helper template definitions (suffix `.tpl`).
+#
+# Any time files in `templates` or `charts` changes, we should run `helm lint`. `helm lint` can only be run on the root
+# path of a chart, so this pre-commit hook will take the changed files and resolve it to the helm chart path. The helm
+# chart path is determined by a heuristic: it is the directory containing the `Chart.yaml` file.
+#
 # Note that pre-commit will only feed this the files that changed in the commit, so we can't do the filtering at the
 # hook setting level (e.g `files: Chart.yaml` will not work if no changes are made in the Chart.yaml file).
 
@@ -91,7 +110,7 @@ for file in "$@"; do
   file_chart_path=$(chart_path "$file")
   debug "Resolved $file to chart path $file_chart_path"
 
-  if [[ ! -z $file_chart_path ]]; then
+  if [[ ! -z "$file_chart_path" ]]; then
     if contains_element "$file_chart_path" "${seen_chart_paths[@]}"; then
       debug "Already linted $file_chart_path"
     else
