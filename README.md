@@ -18,7 +18,7 @@ supported hooks are:
 
 ## General Usage
 
-In each of your repos, add a file called `.pre-commit-config.yml` with the following contents:
+In each of your repos, add a file called `.pre-commit-config.yaml` with the following contents:
 
 ```yaml
 repos:
