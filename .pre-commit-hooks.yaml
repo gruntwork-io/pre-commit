@@ -2,11 +2,20 @@
 
 - id: terraform-fmt
   name: Terraform fmt
-  description: Rewrites all Terraform configuration files to a canonical format.
+  description: Rewrites all Terraform configuration files to a canonical format
   entry: hooks/terraform-fmt.sh
   language: script
   files: \.tf$
   exclude: \.+.terraform\/.*$
+
+- id: terraform-validate
+  name: Terraform validate
+  description: Validates all Terraform configuration files
+  entry: hooks/terraform-validate.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
 
 - id: shellcheck
   name: Shellcheck Bash Linter
@@ -16,7 +25,7 @@
 
 - id: gofmt
   name: gofmt
-  description: Gofmt formats Go programs.
+  description: Gofmt formats Go programs
   entry: hooks/gofmt.sh
   language: script
   files: \.go$
@@ -32,7 +41,7 @@
 
 - id: golint
   name: golint
-  description: Golint is a linter for Go source code.
+  description: Golint is a linter for Go source code
   entry: hooks/golint.sh
   language: script
   files: \.go$
@@ -40,7 +49,7 @@
 
 - id: yapf
   name: yapf
-  description: yapf (Yet Another Python Formatter) is a python formatter from Google.
+  description: yapf (Yet Another Python Formatter) is a python formatter from Google
   entry: hooks/yapf.sh
   language: script
   files: \.py$
