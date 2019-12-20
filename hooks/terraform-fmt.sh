@@ -7,6 +7,4 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
-for file in "$@"; do
-  terraform fmt `dirname $file`
-done
+terraform fmt -recursive
