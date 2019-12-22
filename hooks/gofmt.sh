@@ -7,7 +7,12 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
+exit_status=0
 
 for file in "$@"; do
-  go fmt "./$(dirname "$file")"
+    if ! diff -u <(echo -n) <(gofmt -s -d -e "$file"); then
+        exit_status=1
+    fi
 done
+
+exit ${exit_status}
