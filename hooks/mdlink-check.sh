@@ -7,6 +7,12 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
+if ! command -v markdown-link-check; then
+  >&2 echo "markdown-link-check is not available on this system."
+  >&2 echo "Please install it by running 'npm install -g markdown-link-check'"
+  exit 1
+fi
+
 TMP_CONFIG="$(mktemp)"
 cat > "$TMP_CONFIG" <<EOF
 {
