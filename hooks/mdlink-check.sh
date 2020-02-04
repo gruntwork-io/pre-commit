@@ -19,4 +19,6 @@ cat > "$TMP_CONFIG" <<EOF
 }
 EOF
 
-markdown-link-check -c "$TMP_CONFIG" "$(pwd)"
+for file in "$@"; do
+  markdown-link-check -c "$TMP_CONFIG" "$file"
+done
