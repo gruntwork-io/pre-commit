@@ -13,7 +13,7 @@ cat > "$TMP_CONFIG" <<EOF
   "replacementPatterns": [
     {
       "pattern": "^/",
-      "replacement": "file://$(pwd)"
+      "replacement": "file://$(pwd)/"
     }
   ]
 }
