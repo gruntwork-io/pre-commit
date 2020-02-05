@@ -13,6 +13,8 @@ if ! command -v markdown-link-check; then
   exit 1
 fi
 
+# This is the recommended way to set the project root for properly resolving absolute paths. See
+# https://github.com/tcort/markdown-link-check/issues/16 for more info.
 TMP_CONFIG="$(mktemp)"
 cat > "$TMP_CONFIG" <<EOF
 {
