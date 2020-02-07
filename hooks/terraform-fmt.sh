@@ -8,7 +8,5 @@ set -e
 export PATH=$PATH:/usr/local/bin
 
 for file in "$@"; do
-  tmp_file="$(mktemp)"
-  terraform fmt - <"$file" >"$tmp_file"
-  mv "$tmp_file" "$file"
+  terraform fmt -write=true "$file"
 done
