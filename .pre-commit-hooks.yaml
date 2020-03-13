@@ -26,6 +26,18 @@
   files: \.tf$
   exclude: \.+.terraform\/.*$
 
+- id: terragrunt-hclfmt
+  name: Terragrunt hclfmt
+  description: Rewrites all Terragrunt configuration files to a canonical format
+  entry: hooks/terragrunt-hclfmt.sh
+  language: script
+  files: \.hcl$
+  exclude: >
+    (?x)^(
+      .+\.terraform\/.*$|
+      .+\.terragrunt-cache\/.*$|
+    )$
+
 - id: shellcheck
   name: Shellcheck Bash Linter
   description: Performs linting on bash scripts
