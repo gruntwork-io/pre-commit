@@ -8,5 +8,5 @@ set -e
 export PATH=$PATH:/usr/local/bin
 
 for file in "$@"; do
-  terragrunt hclfmt --terragrunt-config "$file"
+  terragrunt hclfmt --terragrunt-hclfmt-file "$file"
 done
