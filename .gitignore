@@ -11,3 +11,8 @@
 build/
 */build/
 out/
+
+# Python
+.mypy_cache
+*.pyc
+__pycache__
