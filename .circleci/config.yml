@@ -1,24 +1,18 @@
 version: 2.1
 
 jobs:
-  unit_test_py3:
-    docker:
-      - image: python:3
+  unit_test:
+    machine:
+      enabled: true
+      image: "ubuntu-1604:201903-01"
     steps:
       - checkout
       - run:
-          name: run tests
-          command: |
-            python test/check-skip-env/check_skip_env_test.py
-  unit_test_py2:
-    docker:
-      - image: python:2
-    steps:
-      - checkout
+          name: run tests py2
+          command: python test/check-skip-env/check_skip_env_test.py
       - run:
-          name: run tests
-          command: |
-            python test/check-skip-env/check_skip_env_test.py
+          name: run tests py3
+          command: python3 test/check-skip-env/check_skip_env_test.py
 
 
 workflows:
