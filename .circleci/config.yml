@@ -1,0 +1,31 @@
+version: 2.1
+
+jobs:
+  unit_test_py3:
+    docker:
+      - image: python:3
+    steps:
+      - checkout
+      - run:
+          name: run tests
+          command: |
+            python test/check-skip-env/check_skip_env_test.py
+  unit_test_py2:
+    docker:
+      - image: python:2
+    steps:
+      - checkout
+      - run:
+          name: run tests
+          command: |
+            python test/check-skip-env/check_skip_env_test.py
+
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - unit_test:
+          filters:
+            tags:
+              only: /^v.*/
