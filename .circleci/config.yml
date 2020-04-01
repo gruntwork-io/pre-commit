@@ -8,11 +8,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: run tests py2
-          command: python test/check-skip-env/check_skip_env_test.py
-      - run:
-          name: run tests py3
-          command: python3 test/check-skip-env/check_skip_env_test.py
+          name: run py tests
+          command: |
+            cd test
+            pip install tox
+            tox
 
 
 workflows:

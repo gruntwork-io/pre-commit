@@ -16,3 +16,4 @@ out/
 .mypy_cache
 *.pyc
 __pycache__
+.tox

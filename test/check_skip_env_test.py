@@ -1,14 +1,19 @@
 import os
+import sys
 import glob
 import unittest
-import subprocess
+
+if sys.version_info[0] < 3:
+    import subprocess32 as subprocess
+else:
+    import subprocess
 
 
 class TestCheckSkipEnv(unittest.TestCase):
     def setUp(self):
         self.root = get_git_root()
         self.hook_script = os.path.join(self.root, 'hooks', 'check_skip_env.py')
-        self.fixture_dir = os.path.join(self.root, 'test', 'check-skip-env', 'fixtures')
+        self.fixture_dir = os.path.join(self.root, 'test', 'fixtures')
 
     def _check_success(self, files):
         subprocess.run([self.hook_script] + files, check=True)
