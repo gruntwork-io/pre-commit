@@ -12,7 +12,7 @@ func TestWithStages(t *testing.T) {
 	t.Parallel()
 
 	// Uncomment the items below to skip certain parts of the test
-	os.Setenv("THE_ANSWER", "42")
+	os.Setenv("TERRATEST_REGION", "eu-west-1")
 	//os.Setenv("SKIP_setup", "true")
 	//os.Setenv("SKIP_deploy", "true")
 	//os.Setenv("SKIP_validate", "true")

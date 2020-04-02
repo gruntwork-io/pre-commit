@@ -34,6 +34,10 @@ class TestCheckSkipEnv(unittest.TestCase):
         test_file_path = os.path.join(self.fixture_dir, 'skip_uncommented_test.go')
         self._check_failure([test_file_path], [test_file_path])
 
+    def test_terratest_region_uncommented(self):
+        test_file_path = os.path.join(self.fixture_dir, 'terratest_region_uncommented_test.go')
+        self._check_failure([test_file_path], [test_file_path])
+
     def test_multiple_skip_uncommented(self):
         test_file_path = os.path.join(self.fixture_dir, 'multiple_skip_uncommented_test.go')
         self._check_failure([test_file_path], [test_file_path])
@@ -48,6 +52,7 @@ class TestCheckSkipEnv(unittest.TestCase):
             os.path.join(self.fixture_dir, 'skip_uncommented_test.go'),
             os.path.join(self.fixture_dir, 'multiple_skip_uncommented_test.go'),
             os.path.join(self.fixture_dir, 'nested_uncommented_test.go'),
+            os.path.join(self.fixture_dir, 'terratest_region_uncommented_test.go'),
         ]
         self._check_failure(all_test_files, failed_files)
 

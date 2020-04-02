@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logg
 def has_setenv_skip(fpath):
     with open(fpath) as f:
         for line in f:
-            if re.match(r'^\s+os.Setenv\(\"SKIP_', line):
+            if re.match(r'^\s+os.Setenv\(\"(SKIP_|TERRATEST_REGION)', line):
                 return True
     return False
 
