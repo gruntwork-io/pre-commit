@@ -94,3 +94,10 @@
   language: script
   files: \.md$
   exclude: vendor\/.*$
+
+- id: check-terratest-skip-env
+  name: check-terratest-skip-env
+  description: Check all go source files for any uncommented os.Setenv calls setting a terratest SKIP environment.
+  entry: ./hooks/check_skip_env.py
+  language: script
+  files: \.go$
