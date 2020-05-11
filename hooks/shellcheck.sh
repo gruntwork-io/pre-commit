@@ -8,17 +8,47 @@ set -e
 export PATH=$PATH:/usr/local/bin
 
 exit_status=0
+ENABLE_LIST=""
 
-for file in "$@"; do
- if (head -1 "$file" |grep '^#!.*sh'>/dev/null); then
+# Arguments
+parse_arguments() {
+  while [ $# -gt 0 ]; do
+    # Get param and value using parameter expansion, splitting on = or " "
+    param="${1%[ =]*}"
+    value="${1#*[ =]}"
+    if [ "$param" = "$value" ]; then value="$2"; fi
+    shift
+    case "$param" in
+    --enable)
+      ENABLE_LIST="$ENABLE_LIST $value"
+      ;;
+    -*)
+      echo "Error: Unknown option: $param" >&2
+      exit 1
+      ;;
+    *)
+      PARAMS="$PARAMS $param"
+      ;;
+    esac
+  done
+  ENABLE_LIST="${ENABLE_LIST## }" # remove preceeding space
+}
 
-    if ! shellcheck "$file"; then
-        exit_status=1
+parse_arguments "$@"
+
+for file in $PARAMS; do
+  if (head -1 "$file" | grep '^#!.*sh'>/dev/null); then
+    SHELLCHECK_ARGS=""
+    if [ "$ENABLE_LIST" != "" ]; then
+      SHELLCHECK_ARGS+="--enable=\"$ENABLE_LIST\" "
     fi
- elif [[ "$file" =~ \.sh$|bash$ ]]; then
-      echo "$file: missing shebang"
+    if ! eval "shellcheck $SHELLCHECK_ARGS\"$file\""; then
       exit_status=1
- fi
+    fi
+  elif [[ "$file" =~ \.sh$|bash$ ]]; then
+    echo "$file: missing shebang"
+    exit_status=1
+  fi
 done
 
 exit $exit_status
