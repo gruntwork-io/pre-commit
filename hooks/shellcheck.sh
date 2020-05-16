@@ -36,11 +36,12 @@ parse_arguments() {
 parse_arguments "$@"
 
 for FILE in $files; do
-	if (head -1 "$FILE" | grep '^#!.*sh' >/dev/null); then
+	SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)$'
+	if (head -1 "$FILE" | grep "$SHEBANG_REGEX" >/dev/null); then
 		if ! shellcheck ${enable_list:+ --enable="$enable_list"} "$FILE"; then
 			exit_status=1
 		fi
-	elif [[ "$FILE" =~ \.sh$|bash$ ]]; then
+	elif [[ "$FILE" =~ .+\.(sh|bash|dash|ksh|ash|bats)$ ]]; then
 		echo "$FILE: missing shebang"
 		exit_status=1
 	fi
