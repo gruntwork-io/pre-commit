@@ -7,44 +7,60 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
-exit_status=0
-enable_list=""
+readonly SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)$'
 
-parse_arguments() {
-	while (($# > 0)); do
-		# Grab param and value splitting on " " or "=" with parameter expansion
-		local PARAMETER="${1%[ =]*}"
-		local VALUE="${1#*[ =]}"
-		if [[ "$PARAMETER" == "$VALUE" ]]; then VALUE="$2"; fi
-		shift
-		case "$PARAMETER" in
-		--enable)
-			enable_list="$enable_list $VALUE"
-			;;
-		-*)
-			echo "Error: Unknown option: $PARAMETER" >&2
-			exit 1
-			;;
-		*)
-			files="$files $PARAMETER"
-			;;
-		esac
-	done
-	enable_list="${enable_list## }" # remove preceeding space
+function shellcheck_files {
+  local -r enable_list="$1"
+  local -r files="$2"
+
+  local exit_status=0
+
+  for file in $files; do
+    if (head -1 "$file" | grep "$SHEBANG_REGEX" >/dev/null); then
+      if ! shellcheck ${enable_list:+ --enable="$enable_list"} "$file"; then
+        exit_status=1
+      fi
+    elif [[ "$file" =~ .+\.(sh|bash|dash|ksh|ash|bats)$ ]]; then
+      echo "$file: missing shebang"
+      exit_status=1
+    fi
+  done
+
+  exit $exit_status
 }
 
-parse_arguments "$@"
+function run {
+  local enable_list=""
+  local files=""
 
-for FILE in $files; do
-	SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)$'
-	if (head -1 "$FILE" | grep "$SHEBANG_REGEX" >/dev/null); then
-		if ! shellcheck ${enable_list:+ --enable="$enable_list"} "$FILE"; then
-			exit_status=1
-		fi
-	elif [[ "$FILE" =~ .+\.(sh|bash|dash|ksh|ash|bats)$ ]]; then
-		echo "$FILE: missing shebang"
-		exit_status=1
-	fi
-done
+  local parameter=""
+  local value=""
 
-exit $exit_status
+  while [[ $# -gt 0 ]]; do
+    # Grab param and value splitting on " " or "=" with parameter expansion
+    parameter="${1%[ =]*}"
+    value="${1#*[ =]}"
+    if [[ "$parameter" == "$value" ]]; then
+      value="$2"
+    fi
+    shift
+
+    case "$parameter" in
+    --enable)
+      enable_list="$value"
+      shift
+      ;;
+    -*)
+      echo "Error: Unknown option: $parameter" >&2
+      exit 1
+      ;;
+    *)
+      files="$files $parameter"
+      ;;
+    esac
+  done
+
+  shellcheck_files "$enable_list" "$files"
+}
+
+run "$@"
