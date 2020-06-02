@@ -47,7 +47,7 @@ function run {
 
     case "$parameter" in
     --enable)
-      enable_list="$value"
+      enable_list="$enable_list $value"
       shift
       ;;
     -*)
@@ -59,6 +59,8 @@ function run {
       ;;
     esac
   done
+  # remove preceeding space from enable_list, which is included in the first arg
+  enable_list="${enable_list## }"
 
   shellcheck_files "$enable_list" "$files"
 }
