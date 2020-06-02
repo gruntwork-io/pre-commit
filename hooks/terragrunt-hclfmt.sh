@@ -8,5 +8,7 @@ set -e
 export PATH=$PATH:/usr/local/bin
 
 for file in "$@"; do
+  pushd "$(dirname "$file")"
   terragrunt hclfmt --terragrunt-hclfmt-file "$file"
+  popd
 done
