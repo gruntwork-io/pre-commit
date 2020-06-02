@@ -125,6 +125,19 @@ Now when the pre-commit hook runs, it will call `helm lint` with both `linter_va
 helm lint -f values.yaml -f linter_values.yaml .
 ```
 
+## Shellcheck Arguments
+
+To enable optional shellcheck features you can use the `--enable` flag.
+Other shellcheck flags can not be passed through.
+
+```yaml
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: <VERSION>
+    hooks:
+      - id: shellcheck
+        args: ["--enable require-variable-braces,deprecate-which"]
+```
 
 
 ## License
