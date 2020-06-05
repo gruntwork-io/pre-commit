@@ -9,6 +9,6 @@ export PATH=$PATH:/usr/local/bin
 
 for file in "$@"; do
   pushd "$(dirname "$file")"
-  terraform fmt -write=true "$file"
+  terraform fmt -write=true "$(basename "$file")"
   popd
 done
