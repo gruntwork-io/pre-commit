@@ -7,9 +7,12 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
-for dir in $(echo "$@" | xargs -n1 dirname | sort -u | uniq); do
-  pushd "$dir" >/dev/null
-  terraform init -backend=false
-  terraform validate
-  popd >/dev/null
+if ! command -v asciidoc-link-check; then
+  >&2 echo "asciidoc-link-check is not available on this system."
+  >&2 echo "Please install it by running 'npm install -g asciidoc-link-check'"
+  exit 1
+fi
+
+for file in "$@"; do
+  asciidoc-link-check "$file"
 done
