@@ -86,6 +86,7 @@
   entry: hooks/helmlint.sh
   language: script
   files: \.((ya?ml)|(tpl))$
+  require_serial: true
 
 - id: markdown-link-check
   name: markdown-link-check
