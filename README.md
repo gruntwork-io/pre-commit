@@ -7,9 +7,11 @@ supported hooks are:
 
 * **terraform-fmt**: Automatically run `terraform fmt` on all Terraform code (`*.tf` files).
 * **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
+* **terragrunt-hclfmt**: Automatically run `terragrunt hclfmt` on all Terragrunt configurations.
 * **tflint**: Automatically run [`tflint`](https://github.com/terraform-linters/tflint) on all Terraform code (`*.tf` files).
 * **shellcheck**: Run [`shellcheck`](https://www.shellcheck.net/) to lint files that contain a bash [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 * **gofmt**: Automatically run `gofmt` on all Golang code (`*.go` files).
+* **goimports**: Automatically run `goimports` on all Golang code (`*.go` files).
 * **golint**: Automatically run `golint` on all Golang code (`*.go` files).
 * **yapf**: Automatically run [`yapf`](https://github.com/google/yapf) on all python code (`*.py` files).
 * **helmlint** Automatically run [`helm lint`](https://github.com/helm/helm/blob/master/docs/helm/helm_lint.md) on your Helm chart files. [See caveats here](#helm-lint-caveats).
