@@ -7,8 +7,11 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
+# Store and return last failure from fmt so this can validate every directory passed before exiting
+FMT_ERROR=0
+
 for file in "$@"; do
-  pushd "$(dirname "$file")" >/dev/null
-  terraform fmt -write=true "$(basename "$file")"
-  popd >/dev/null
+  terraform fmt -diff -check "$file" || FMT_ERROR=$?
 done
+
+exit ${FMT_ERROR}
