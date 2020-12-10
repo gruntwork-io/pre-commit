@@ -10,11 +10,8 @@ export PATH=$PATH:/usr/local/bin
 # Store and return last failure from fmt so this can validate every directory passed before exiting
 FMT_ERROR=0
 
-for dir in $(echo "$@" | xargs -n1 dirname | sort -u | uniq); do
-  echo "--> Running 'terraform fmt' in directory '$dir'"
-  pushd "$dir" >/dev/null
-  terraform fmt -write=true || FMT_ERROR=$?
-  popd >/dev/null
+for file in "$@"; do
+  terraform fmt -diff -check "$file" || FMT_ERROR=$?
 done
 
 exit ${FMT_ERROR}
