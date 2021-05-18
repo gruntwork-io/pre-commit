@@ -102,3 +102,12 @@
   entry: ./hooks/check_skip_env.py
   language: script
   files: \.go$
+
+- id: tfsec
+  name: tfsec
+  description: Security scanner for your Terraform code
+  entry: hooks/tfsec.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true

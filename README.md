@@ -9,6 +9,7 @@ supported hooks are:
 * **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
 * **terragrunt-hclfmt**: Automatically run `terragrunt hclfmt` on all Terragrunt configurations.
 * **tflint**: Automatically run [`tflint`](https://github.com/terraform-linters/tflint) on all Terraform code (`*.tf` files).
+* **tfsec**: Automatically run [`tfsec`](https://github.com/tfsec/tfsec) on all Terraform code (`*.tf` files).
 * **shellcheck**: Run [`shellcheck`](https://www.shellcheck.net/) to lint files that contain a bash [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 * **gofmt**: Automatically run `gofmt` on all Golang code (`*.go` files).
 * **goimports**: Automatically run `goimports` on all Golang code (`*.go` files).
