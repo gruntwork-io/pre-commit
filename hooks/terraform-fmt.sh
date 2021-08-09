@@ -18,7 +18,7 @@ parse_arguments() {
 		if [[ "$PARAMETER" == "$VALUE" ]]; then VALUE="$2"; fi
 		shift
 		case "$PARAMETER" in
-		--no-write)
+		--no-autofix)
 			write_changes=false
 			;;
 		-*)

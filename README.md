@@ -130,7 +130,7 @@ helm lint -f values.yaml -f linter_values.yaml .
 ## terraform-fmt arguments
 
 By default, `terraform-fmt` will write changes back to the original file.
-You can skip this by setting the `--no-write` flag.
+You can skip this by setting the `--no-autofix` flag.
 
 ```yaml
 repos:
@@ -138,7 +138,7 @@ repos:
     rev: <VERSION>
     hooks:
       - id: terraform-fmt
-        args: ["--no-write"]
+        args: ["--no-autofix"]
 ```
 
 
