@@ -9,10 +9,10 @@
   exclude: \.+.terraform\/.*$
   require_serial: true
 
-- id: terraform-validate
-  name: Terraform validate
-  description: Validates all Terraform configuration files
-  entry: hooks/terraform-validate.sh
+- id: terragrunt-validate
+  name: Terragrunt validate
+  description: Validates all Terraform configuration files, running through Terragrunt
+  entry: hooks/terragrunt-validate.sh
   language: script
   files: \.tf$
   exclude: \.+.terraform\/.*$
