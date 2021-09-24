@@ -18,6 +18,14 @@
   exclude: \.+.terraform\/.*$
   require_serial: true
 
+- id: packer-validate
+  name: Packer validate
+  description: Validates all Packer configuration files
+  entry: hooks/packer-validate.sh
+  language: script
+  files: \.pkr.*$
+  require_serial: true
+
 - id: tflint
   name: tflint
   description: Linter for Terraform source code
