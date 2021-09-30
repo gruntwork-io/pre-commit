@@ -15,7 +15,7 @@ supported hooks are:
 * **goimports**: Automatically run `goimports` on all Golang code (`*.go` files).
 * **golint**: Automatically run `golint` on all Golang code (`*.go` files).
 * **yapf**: Automatically run [`yapf`](https://github.com/google/yapf) on all python code (`*.py` files).
-* **helmlint** Automatically run [`helm lint`](https://github.com/helm/helm/blob/master/docs/helm/helm_lint.md) on your Helm chart files. [See caveats here](#helm-lint-caveats).
+* **helmlint** Automatically run [`helm lint`](https://helm.sh/docs/helm/helm_lint/) on your Helm chart files. [See caveats here](#helm-lint-caveats).
 * **markdown-link-check** Automatically run [markdown-link-check](https://github.com/tcort/markdown-link-check) on
   markdown doc files.
 
