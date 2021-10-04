@@ -23,7 +23,7 @@
   description: Validates all Packer configuration files
   entry: hooks/packer-validate.sh
   language: script
-  files: \.pkr.*$
+  files: (\.pkr\.(hcl|json)|\.pkrvars\.hcl)$
   require_serial: true
 
 - id: tflint
