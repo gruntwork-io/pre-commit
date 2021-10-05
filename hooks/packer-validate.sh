@@ -13,7 +13,7 @@ VALIDATE_ERROR=0
 for dir in $(echo "$@" | xargs -n1 dirname | sort -u | uniq); do
   echo "--> Running 'packer validate -syntax-only' in directory '$dir'"
   pushd "$dir" >/dev/null
-  packer validate -syntax-only || VALIDATE_ERROR=$?
+  packer validate -syntax-only . || VALIDATE_ERROR=$?
   popd >/dev/null
 done
 
