@@ -7,6 +7,9 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
+# Install any plugins defined in .tflint.hcl
+tflint --init
+
 for file in "$@"; do
   tflint $file
 done
