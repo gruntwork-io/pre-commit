@@ -5,6 +5,7 @@ jobs:
     machine:
       enabled: true
       image: ubuntu-2004:202111-02
+    resource_class: small
     steps:
       - checkout
       - run:
