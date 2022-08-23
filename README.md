@@ -130,8 +130,7 @@ helm lint -f values.yaml -f linter_values.yaml .
 
 ## Shellcheck Arguments
 
-The pre-commit hook for `shellcheck` accepts optional features as arguments using the `--enable` flag. For any
-additional entries set them in a `.shellcheckrc` within the project root.
+The pre-commit hook for `shellcheck` accepts optional features as arguments using the `--enable` flag.
 
 ```yaml
 repos:
@@ -142,6 +141,7 @@ repos:
         args: ["--enable require-variable-braces,deprecate-which"]
 ```
 
+For any additional entries set them in a `.shellcheckrc` within the project root.
 
 ## License
 
