@@ -130,7 +130,7 @@ helm lint -f values.yaml -f linter_values.yaml .
 
 ## Shellcheck Arguments
 
-The pre-commit hook for `shellcheck` accepts optional features as arguments using the `--enable` flag.
+To enable optional shellcheck features you can use the `--enable` flag.
 
 ```yaml
 repos:
