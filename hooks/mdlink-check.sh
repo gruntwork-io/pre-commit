@@ -15,6 +15,8 @@ fi
 
 # This is the recommended way to set the project root for properly resolving absolute paths. See
 # https://github.com/tcort/markdown-link-check/issues/16 for more info.
+# markdown-link-check 3.10 introduced checking anchors, which does not work witihn the same file. See
+# https://github.com/tcort/markdown-link-check/issues/195
 TMP_CONFIG="$(mktemp)"
 cat > "$TMP_CONFIG" <<EOF
 {
@@ -23,7 +25,12 @@ cat > "$TMP_CONFIG" <<EOF
       "pattern": "^/",
       "replacement": "file://$(pwd)/"
     }
-  ]
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^#"
+    }
+  ]  
 }
 EOF
 
