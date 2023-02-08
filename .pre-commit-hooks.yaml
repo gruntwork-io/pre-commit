@@ -110,3 +110,14 @@
   entry: ./hooks/check_skip_env.py
   language: script
   files: \.go$
+
+- id: checkov
+  name: Checkov
+  description: Runs checkov on Terraform templates.
+  entry: checkov -d .
+  language: script
+  pass_filenames: false
+  always_run: false
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
