@@ -110,3 +110,11 @@
   entry: ./hooks/check_skip_env.py
   language: script
   files: \.go$
+
+- id: sentinel-fmt
+  name: Sentinel fmt
+  description: Rewrites all Sentinel configuration files to a canonical format
+  entry: hooks/sentinel-fmt.sh
+  language: script
+  files: \.sentinel$
+  require_serial: true

@@ -18,6 +18,8 @@ supported hooks are:
 * **helmlint** Automatically run [`helm lint`](https://helm.sh/docs/helm/helm_lint/) on your Helm chart files. [See caveats here](#helm-lint-caveats).
 * **markdown-link-check** Automatically run [markdown-link-check](https://github.com/tcort/markdown-link-check) on
   markdown doc files.
+* **sentinel-fmt**: Automatically run `sentinel fmt` on all Sentinel code (`*.sentinel.*` files).
+
 
 
 
