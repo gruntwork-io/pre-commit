@@ -10,6 +10,21 @@ export PATH=$PATH:/usr/local/bin
 # Install any plugins defined in .tflint.hcl
 tflint --init
 
-for file in "$@"; do
-  tflint $file
+
+declare -a FILES
+declare -a ARGS
+while [[ $# -gt 0 ]]
+do
+  case "$1" in
+    -*) ARGS+=("$1")
+      ;;
+    *) FILES+=("$1")
+      ;;
+  esac
+  shift
+done
+
+for file in "${FILES[@]}"
+do
+  tflint "${ARGS[@]}" "$file"
 done
