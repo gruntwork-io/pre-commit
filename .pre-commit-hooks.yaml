@@ -84,16 +84,6 @@
   language: script
   files: \.go$
   require_serial: true
-  #pass_filenames: false
-
-# - id: golangci-lint
-#   name: golangci-lint
-#   description: Fast linters runner for Go.
-#   entry: golangci-lint run --new-from-rev HEAD --fix
-#   types: [go]
-#   language: golang
-#   require_serial: true
-#   pass_filenames: false
 
 - id: yapf
   name: yapf
