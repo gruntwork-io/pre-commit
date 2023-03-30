@@ -76,6 +76,26 @@
   files: \.go$
   exclude: vendor\/.*$
 
+- id: golangci-lint
+  name: golangci-lint
+  description: golangci-lint is a Go linters aggregator
+  #entry: hooks/golangci-lint.sh
+  #language: script
+  entry: golangci-lint run --new-from-rev HEAD --fix
+  types: [go]
+  language: golang
+  #files: \.go$
+  require_serial: true
+
+# - id: golangci-lint
+#   name: golangci-lint
+#   description: Fast linters runner for Go.
+#   entry: golangci-lint run --new-from-rev HEAD --fix
+#   types: [go]
+#   language: golang
+#   require_serial: true
+#   pass_filenames: false
+
 - id: yapf
   name: yapf
   description: yapf (Yet Another Python Formatter) is a python formatter from Google
