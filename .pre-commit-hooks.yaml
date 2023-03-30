@@ -79,14 +79,12 @@
 - id: golangci-lint
   name: golangci-lint
   description: golangci-lint is a Go linters aggregator
-  #entry: hooks/golangci-lint.sh
-  #language: script
-  entry: golangci-lint run --new-from-rev HEAD --fix
-  types: [go]
-  language: golang
-  #files: \.go$
+  entry: hooks/golangci-lint.sh
+  language: script
+  language: script
+  files: \.go$
   require_serial: true
-  pass_filenames: false
+  #pass_filenames: false
 
 # - id: golangci-lint
 #   name: golangci-lint
