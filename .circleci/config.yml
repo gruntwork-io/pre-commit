@@ -4,8 +4,7 @@ jobs:
   unit_test:
     machine:
       enabled: true
-      image: ubuntu-2004:202111-02
-    resource_class: small
+      image: ubuntu-2204:2023.02.1
     steps:
       - checkout
       - run:
@@ -15,7 +14,6 @@ jobs:
             pip install --upgrade "pip < 21.0"
             pip install tox
             tox
-
 
 workflows:
   version: 2
