@@ -26,5 +26,5 @@ done
 
 for file in "${FILES[@]}"
 do
-  tflint "${ARGS[@]}" "$file"
+  tflint "${ARGS[@]}" --chdir "$(dirname "$file")" --filter "$(basename "$file")"
 done
