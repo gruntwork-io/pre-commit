@@ -145,6 +145,46 @@ repos:
         args: ["--enable require-variable-braces,deprecate-which"]
 ```
 
+## tflint Caveats
+
+### Using the `--config` argument
+
+With the introduction of `--chdir` into tflint, the `--config` argument is now bound to whatever subdirectory you are
+running the check against.  For mono-repos this isn't ideal as you may have a central configuration file you'd like to
+use.  If this matches your use-case, you can specify the placeholder `__GIT_DIR__` value in the `--config` argument 
+that will evaluate to the root of the repository you are in.
+
+```yaml
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: <VERSION>
+    hooks:
+    - id: tflint
+      args:
+        - "--config=__GIT_DIR__/.tflint.hcl"
+```
+
+#### Changing the placeholder value
+
+You can change the value of the placeholder by populating the `PRECOMMIT_TFLINT_REPO_ROOT_KEYWORD` environment variable.
+
+```bash
+export PRECOMMIT_TFLINT_REPO_ROOT_KEYWORD=__foo__
+
+cat <<EOF > .pre-commit-config.yaml
+---
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.22
+    hooks:
+    - id: terragrunt-hclfmt
+    - id: tflint
+      args:
+        - "--config=__foo__/.tflint.hcl"
+EOF
+
+pre-commit run
+```
 
 ## License
 
