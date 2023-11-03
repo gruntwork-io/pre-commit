@@ -134,7 +134,6 @@ helm lint -f values.yaml -f linter_values.yaml .
 ## Shellcheck Arguments
 
 To enable optional shellcheck features you can use the `--enable` flag.
-Other shellcheck flags can not be passed through.
 
 ```yaml
 repos:
@@ -145,6 +144,7 @@ repos:
         args: ["--enable require-variable-braces,deprecate-which"]
 ```
 
+For any additional entries set them in a `.shellcheckrc` within the project root.
 
 ## License
 
