@@ -7,22 +7,40 @@ set -e
 # workaround to allow GitHub Desktop to work, add this (hopefully harmless) setting here.
 export PATH=$PATH:/usr/local/bin
 
-# Install any plugins defined in .tflint.hcl
-tflint --init
+# allow customization of the repo root keyword
+PRECOMMIT_TFLINT_REPO_ROOT_KEYWORD=${PRECOMMIT_TFLINT_REPO_ROOT_KEYWORD:-__GIT_ROOT__}
 
+process_arg() {
+  local arg
+  local repo_root
+
+  arg="${1}"
+  repo_root="$(pwd)"
+
+  case "${arg}" in
+    "--config"*)
+      echo "${arg//$PRECOMMIT_TFLINT_REPO_ROOT_KEYWORD/$repo_root}"
+      ;;
+    *)
+      echo "${arg}"
+  esac
+}
 
 declare -a FILES
 declare -a ARGS
 while [[ $# -gt 0 ]]
 do
   case "$1" in
-    -*) ARGS+=("$1")
+    -*) ARGS+=("$(process_arg "$1")")
       ;;
     *) FILES+=("$1")
       ;;
   esac
   shift
 done
+
+# Install any plugins defined in .tflint.hcl
+tflint "${ARGS[@]}" --init
 
 for file in "${FILES[@]}"
 do
