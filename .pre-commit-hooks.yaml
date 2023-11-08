@@ -14,7 +14,7 @@
   description: Validates all Terraform configuration files
   entry: hooks/terraform-validate.sh
   language: script
-  files: \.tf$
+  files: \.(tf|tfvars)$
   exclude: \.+.terraform\/.*$
   require_serial: true
 
