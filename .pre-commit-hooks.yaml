@@ -9,10 +9,28 @@
   exclude: \.+.terraform\/.*$
   require_serial: true
 
+- id: opentofu-fmt
+  name: Terraform fmt
+  description: Rewrites all Terraform configuration files to a canonical format
+  entry: hooks/opentofu-fmt.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
 - id: terraform-validate
   name: Terraform validate
   description: Validates all Terraform configuration files
   entry: hooks/terraform-validate.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
+- id: opentofu-validate
+  name: OpenTofu validate
+  description: Validates all Terraform configuration files
+  entry: hooks/opentofu-validate.sh
   language: script
   files: \.tf$
   exclude: \.+.terraform\/.*$
