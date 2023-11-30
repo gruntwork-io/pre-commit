@@ -151,7 +151,7 @@ repos:
 
 With the introduction of `--chdir` into tflint, the `--config` argument is now bound to whatever subdirectory you are
 running the check against.  For mono-repos this isn't ideal as you may have a central configuration file you'd like to
-use.  If this matches your use-case, you can specify the placeholder `__GIT_DIR__` value in the `--config` argument 
+use.  If this matches your use-case, you can specify the placeholder `__GIT_ROOT__` value in the `--config` argument 
 that will evaluate to the root of the repository you are in.
 
 ```yaml
@@ -161,7 +161,7 @@ repos:
     hooks:
     - id: tflint
       args:
-        - "--config=__GIT_DIR__/.tflint.hcl"
+        - "--config=__GIT_ROOT__/.tflint.hcl"
 ```
 
 #### Changing the placeholder value
