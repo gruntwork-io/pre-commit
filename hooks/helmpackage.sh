@@ -110,7 +110,7 @@ for file in "$@"; do
 
   if [[ ! -z "$file_chart_path" ]] && ! contains_element "$file_chart_path" "${packaged_chart_paths[@]}"; then
     # Package the chart and add its path to the list of packaged charts.
-    helm package "$file_chart_path"
+    helm package "$file_chart_path" -d $cwd_abspath/charts
     packaged_chart_paths+=( "$file_chart_path" )
     debug "Packaged $file_chart_path"
   fi
