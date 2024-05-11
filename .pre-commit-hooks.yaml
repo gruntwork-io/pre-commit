@@ -81,7 +81,6 @@
   description: golangci-lint is a Go linters aggregator
   entry: hooks/golangci-lint.sh
   language: script
-  language: script
   files: \.go$
   require_serial: true
 
@@ -101,6 +100,14 @@
   name: helmlint
   description: Run helm lint, a linter for helm charts
   entry: hooks/helmlint.sh
+  language: script
+  files: \.((ya?ml)|(tpl))$
+  require_serial: true
+
+- id: helm-package
+  name: helm-package
+  description: Run helm package to package helm charts.
+  entry: hooks/helmpackage.sh
   language: script
   files: \.((ya?ml)|(tpl))$
   require_serial: true
