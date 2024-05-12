@@ -109,7 +109,10 @@
   description: Run helm package to package helm charts.
   entry: hooks/helmpackage.sh
   language: script
-  files: \.((ya?ml)|(tpl))$
+  files: \.((yma?l)|(tpl))$
+  types:
+    - "file"
+  exclude: ^index\.ya?ml$
   require_serial: true
 
 - id: markdown-link-check

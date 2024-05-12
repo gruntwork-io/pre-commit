@@ -40,6 +40,8 @@ export PATH=$PATH:/usr/local/bin
 # Get the absolute path of the current working directory to know when to stop traversing up the directory tree.
 readonly cwd_abspath="$(realpath "$PWD")"
 
+readonly charts_path="$cwd_abspath/charts"
+
 # Function to check if an array contains a specific element.
 # Usage: contains_element "value_to_find" "${array[@]}"
 # Returns: 0 if found, 1 otherwise.
@@ -110,7 +112,7 @@ for file in "$@"; do
 
   if [[ ! -z "$file_chart_path" ]] && ! contains_element "$file_chart_path" "${packaged_chart_paths[@]}"; then
     # Package the chart and add its path to the list of packaged charts.
-    helm package "$file_chart_path" -d $cwd_abspath/charts
+    helm package "$file_chart_path" -d $charts_path
     packaged_chart_paths+=( "$file_chart_path" )
     debug "Packaged $file_chart_path"
   fi
