@@ -42,8 +42,8 @@
   files: \.hcl$
   exclude: >
     (?x)^(
-      \.terraform\/.*$|
-      \.terragrunt-cache\/.*$|
+      \.terraform\/.*|
+      \.terragrunt-cache\/.*|
     )$
 
 - id: shellcheck
