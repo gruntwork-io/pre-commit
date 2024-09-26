@@ -9,10 +9,28 @@
   exclude: \.+.terraform\/.*$
   require_serial: true
 
+- id: terragrunt-fmt
+  name: Terragrunt fmt
+  description: Rewrites all Terraform configuration files to a canonical format using terragrunt.
+  entry: hooks/terragrunt-fmt.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
 - id: terraform-validate
   name: Terraform validate
   description: Validates all Terraform configuration files
   entry: hooks/terraform-validate.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
+- id: terragrunt-validate
+  name: Terragrunt validate
+  description: Validates all Terraform configuration files using terragrunt.
+  entry: hooks/terragrunt-validate.sh
   language: script
   files: \.tf$
   exclude: \.+.terraform\/.*$
@@ -46,6 +64,17 @@
       .+\.terragrunt-cache\/.*$|
     )$
 
+- id: terragrunt-hclvalidate
+  name: Terragrunt hclvalidate
+  description: Validates all Terragrunt configuration files to a canonical format
+  entry: hooks/terragrunt-hclvalidate.sh
+  language: script
+  files: \.hcl$
+  exclude: >
+    (?x)^(
+      .+\.terraform\/.*$|
+      .+\.terragrunt-cache\/.*$|
+    )$
 - id: shellcheck
   name: Shellcheck Bash Linter
   description: Performs linting on bash scripts
