@@ -36,7 +36,7 @@ parse_arguments() {
 parse_arguments "$@"
 
 for FILE in $files; do
-	SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)$'
+	SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)\( [^ ]*\)*$'
 	if (head -1 "$FILE" | grep "$SHEBANG_REGEX" >/dev/null); then
 		if ! shellcheck ${enable_list:+ --enable="$enable_list"} "$FILE"; then
 			exit_status=1
