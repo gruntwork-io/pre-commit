@@ -6,7 +6,7 @@
   entry: hooks/terraform-fmt.sh
   language: script
   files: \.tf$
-  exclude: \.+.terraform\/.*$
+  exclude: \.terraform\/.*$
   require_serial: true
 
 - id: terraform-validate
@@ -15,7 +15,7 @@
   entry: hooks/terraform-validate.sh
   language: script
   files: \.tf$
-  exclude: \.+.terraform\/.*$
+  exclude: \.terraform\/.*$
   require_serial: true
 
 - id: packer-validate
@@ -32,7 +32,7 @@
   entry: hooks/tflint.sh
   language: script
   files: \.tf$
-  exclude: \.+.terraform\/.*$
+  exclude: \.terraform\/.*$
 
 - id: terragrunt-hclfmt
   name: Terragrunt hclfmt
@@ -42,8 +42,8 @@
   files: \.hcl$
   exclude: >
     (?x)^(
-      .+\.terraform\/.*$|
-      .+\.terragrunt-cache\/.*$|
+      \.terraform\/.*|
+      \.terragrunt-cache\/.*|
     )$
 
 - id: shellcheck
