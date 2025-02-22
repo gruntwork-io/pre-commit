@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 set -e
@@ -13,7 +12,7 @@ export PATH=$PATH:/usr/local/bin
 FMT_ERROR=0
 
 for file in "$@"; do
-  sentinel fmt -diff -check "$file" || FMT_ERROR=$?
+  sentinel fmt -check "$file" || FMT_ERROR=$?
 done
 
 # reset path to the original value
