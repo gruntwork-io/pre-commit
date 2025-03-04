@@ -17,6 +17,7 @@ supported hooks are:
 * **golangci-lint**: Automatically run `golangci-lint` on all Golang code (`*.go` files).
 * **yapf**: Automatically run [`yapf`](https://github.com/google/yapf) on all python code (`*.py` files).
 * **helmlint** Automatically run [`helm lint`](https://helm.sh/docs/helm/helm_lint/) on your Helm chart files. [See caveats here](#helm-lint-caveats).
+* **helm-package** Automatically run [`helm package`](https://helm.sh/docs/helm/helm_package/) to package your Helm charts.
 * **markdown-link-check** Automatically run [markdown-link-check](https://github.com/tcort/markdown-link-check) on
   markdown doc files.
 * **sentinel-fmt**: Automatically run `sentinel fmt` on all Sentinel code (`*.sentinel.*` files).
