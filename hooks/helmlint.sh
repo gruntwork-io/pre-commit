@@ -112,14 +112,17 @@ helm_lint_opts=""
 files=()
 
 handle_options() {
-  while [ $# -gt 0 ]; do
+  while(($#)) ; do
     case $1 in
       --kube-version)
-        helm_lint_opts+="$1 $2"
+        helm_lint_opts+="$1 $2 "
         shift
         ;;
+      --strict)
+        helm_lint_opts+="$1 "
+        ;;
       *)
-        files+=( "$1" )
+        files+=("$1")
         ;;
     esac
     shift
@@ -129,7 +132,7 @@ handle_options() {
 handle_options "$@"
 debug "Passed args: $helm_lint_opts"
 
-for file in "$@"; do
+for file in "${files[@]}"; do
   debug "Checking $file"
   file_chart_path=$(chart_path "$file")
   debug "Resolved $file to chart path $file_chart_path"
