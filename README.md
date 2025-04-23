@@ -5,11 +5,13 @@
 This repo defines Git pre-commit hooks intended for use with [pre-commit](http://pre-commit.com/). The currently
 supported hooks are:
 
+* **tofu-fmt**: Automatically run `tofu fmt` on all OpenTofu code (`*.tf`, `*.tofu` files).
+* **tofu-validate**: Automatically run `tofu validate` on all OpenTofu code (`*.tf`, `*.tofu` files).
 * **terraform-fmt**: Automatically run `terraform fmt` on all Terraform code (`*.tf` files).
 * **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
 * **packer-validate**: Automatically run `packer validate` on all Packer code (`*.pkr.*` files).
 * **terragrunt-hclfmt**: Automatically run `terragrunt hclfmt` on all Terragrunt configurations.
-* **tflint**: Automatically run [`tflint`](https://github.com/terraform-linters/tflint) on all Terraform code (`*.tf` files).
+* **tflint**: Automatically run [`tflint`](https://github.com/terraform-linters/tflint) on all OpenTofu/Terraform code (`*.tf`, `*.tofu` files).
 * **shellcheck**: Run [`shellcheck`](https://www.shellcheck.net/) to lint files that contain a bash [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).
 * **gofmt**: Automatically run `gofmt` on all Golang code (`*.go` files).
 * **goimports**: Automatically run `goimports` on all Golang code (`*.go` files).
@@ -34,8 +36,8 @@ repos:
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: <VERSION> # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
     hooks:
-      - id: terraform-fmt
-      - id: terraform-validate
+      - id: tofu-fmt
+      - id: tofu-validate
       - id: tflint
       - id: shellcheck
       - id: gofmt
@@ -60,7 +62,7 @@ That’s it! Now every time you commit a code change (`.tf` file), the hooks in 
 If you'd like to format all of your code at once (rather than one file at a time), you can run:
 
 ```bash
-pre-commit run terraform-fmt --all-files
+pre-commit run tofu-fmt --all-files
 ```
 
 
