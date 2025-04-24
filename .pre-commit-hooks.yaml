@@ -1,5 +1,23 @@
 # This configuration file allows our pre-commit hooks to be used with pre-commit: http://pre-commit.com/
 
+- id: tofu-fmt
+  name: OpenTofu fmt
+  description: Rewrites all OpenTofu configuration files to a canonical format
+  entry: hooks/tofu-fmt.sh
+  language: script
+  files: \.(tf|tofu)$
+  exclude: \.terraform\/.*$
+  require_serial: true
+
+- id: tofu-validate
+  name: OpenTofu validate
+  description: Validates all OpenTofu configuration files
+  entry: hooks/tofu-validate.sh
+  language: script
+  files: \.(tf|tofu)$
+  exclude: \.terraform\/.*$
+  require_serial: true
+
 - id: terraform-fmt
   name: Terraform fmt
   description: Rewrites all Terraform configuration files to a canonical format
