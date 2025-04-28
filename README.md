@@ -133,6 +133,21 @@ Now when the pre-commit hook runs, it will call `helm lint` with both `linter_va
 helm lint -f values.yaml -f linter_values.yaml .
 ```
 
+## terraform-fmt arguments
+
+By default, `terraform-fmt` will write changes back to the original file.
+You can skip this by setting the `--no-autofix` flag.
+
+```yaml
+repos:
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: <VERSION>
+    hooks:
+      - id: terraform-fmt
+        args: ["--no-autofix"]
+```
+
+
 ## Shellcheck Arguments
 
 To enable optional shellcheck features you can use the `--enable` flag.
