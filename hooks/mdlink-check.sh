@@ -13,6 +13,16 @@ if ! command -v markdown-link-check; then
   exit 1
 fi
 
+# Parse arguments and separate files from markdown-link-check options
+ARGS=()
+FILES=()
+while [[ $# -gt 0 ]]; do case "$1" in
+	-c | --config   | -a | --alive | -r | --retry) ARGS+=("$1" "$2"); shift; ;;
+	-p | --progress | -q | --quiet | -v | --verbose) ARGS+=("$1"); ;;
+  *) FILES+=("$1"); ;;
+esac; shift; done;
+
+
 # This is the recommended way to set the project root for properly resolving absolute paths. See
 # https://github.com/tcort/markdown-link-check/issues/16 for more info.
 # markdown-link-check 3.10 introduced checking anchors, which does not work witihn the same file. See
@@ -34,6 +44,7 @@ cat > "$TMP_CONFIG" <<EOF
 }
 EOF
 
-for file in "$@"; do
-  markdown-link-check -c "$TMP_CONFIG" "$file"
+for file in "${FILES[@]}"; do
+  # shellcheck disable=SC2068
+  markdown-link-check -c "$TMP_CONFIG" ${ARGS[@]} "$file"
 done
