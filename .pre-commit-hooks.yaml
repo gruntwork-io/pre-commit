@@ -36,6 +36,14 @@
   exclude: \.terraform\/.*$
   require_serial: true
 
+- id: packer-fmt
+  name: Packer fmt
+  description: Rewrites all Packer configuration files to a canonical format
+  entry: hooks/packer-fmt.sh
+  language: script
+  files: (\.pkr\.(hcl|json)|\.pkrvars\.hcl)$
+  require_serial: true
+
 - id: packer-validate
   name: Packer validate
   description: Validates all Packer configuration files
