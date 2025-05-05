@@ -9,5 +9,5 @@ export PATH=$PATH:/usr/local/bin
 
 
 for file in "$@"; do
-  go fmt "./$(dirname "$file")"
+  go fmt "$file"
 done
