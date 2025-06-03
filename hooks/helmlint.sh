@@ -146,16 +146,26 @@ for file in "${files[@]}"; do
     linter_values_arg=""
   fi
 
+  # Add any additional values files compatible with the chart-testing tool ([docs](https://github.com/helm/chart-testing))
+  ci_values_args=()
+  for file in "$file_chart_path"/ci/*-values.yaml; do
+    if [ ! -e "$file" ];  then
+      continue
+    fi
+
+    ci_values_args+=("-f" "$file")
+  done
+
   if [[ ! -z "$file_chart_path" ]]; then
     if contains_element "$file_chart_path" "${seen_chart_paths[@]}"; then
       debug "Already linted $file_chart_path"
-    elif [[ -z "$linter_values_arg" ]]; then
+    elif [[ -z "$linter_values_arg" ]] && [ ${#ci_values_args[@]} -eq 0 ]; then
       helm lint $helm_lint_opts "$file_chart_path"
       seen_chart_paths+=( "$file_chart_path" )
     else
       # Combine both linter_values.yaml and values.yaml
-      helm lint $helm_lint_opts -f "$file_chart_path/values.yaml" -f "$linter_values_arg" "$file_chart_path"
       seen_chart_paths+=( "$file_chart_path" )
+      helm lint $helm_lint_opts -f "$file_chart_path/values.yaml" -f "$linter_values_arg" "${ci_values_args[@]}" "$file_chart_path"
     fi
   fi
 done
