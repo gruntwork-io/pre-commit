@@ -149,7 +149,7 @@ for file in "${files[@]}"; do
   # Add any additional values files compatible with the chart-testing tool ([docs](https://github.com/helm/chart-testing))
   ci_values_args=()
   for file in "$file_chart_path"/ci/*-values.yaml; do
-    if [ ! -e "$file" ];  then
+    if [ ! -f "$file" ];  then
       continue
     fi
 
