@@ -134,6 +134,17 @@
   files: \.((ya?ml)|(tpl))$
   require_serial: true
 
+- id: helm-package
+  name: helm-package
+  description: Run helm package to package helm charts.
+  entry: hooks/helmpackage.sh
+  language: script
+  files: \.((yma?l)|(tpl))$
+  types:
+    - "file"
+  exclude: ^index\.ya?ml$
+  require_serial: true
+
 - id: markdown-link-check
   name: markdown-link-check
   description: Run markdown-link-check to check all the relative and absolute links in markdown docs.
