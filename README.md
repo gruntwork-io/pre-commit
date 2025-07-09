@@ -9,6 +9,7 @@ supported hooks are:
 * **tofu-validate**: Automatically run `tofu validate` on all OpenTofu code (`*.tf`, `*.tofu` files).
 * **terraform-fmt**: Automatically run `terraform fmt` on all Terraform code (`*.tf` files).
 * **terraform-validate**: Automatically run `terraform validate` on all Terraform code (`*.tf` files).
+* **packer-fmt**: Automatically run `packer fmt` on all Packer code (`*.pkr.*` files).
 * **packer-validate**: Automatically run `packer validate` on all Packer code (`*.pkr.*` files).
 * **terragrunt-hclfmt**: Automatically run `terragrunt hclfmt` on all Terragrunt configurations (deprecated, use `terragrunt-hcl-fmt` instead if you are using Terragrunt 0.77.22 or later).
 * **terragrunt-hcl-fmt**: Automatically run `terragrunt hcl fmt` on all Terragrunt configurations (requires Terragrunt 0.77.22 or later).
