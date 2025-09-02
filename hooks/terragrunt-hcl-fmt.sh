@@ -10,14 +10,15 @@ export PATH=$PATH:/usr/local/bin
 check_terragrunt_version() {
   local minimum_supported_version="0.77.22"
   local current_version
+    
+  local version_output
+  version_output=$(terragrunt --version 2>/dev/null)
 
-  if ! command -v terragrunt >/dev/null 2>&1; then
-    echo "Warning: terragrunt command not found. Proceeding anyway..." >&2
-
+  if [[ "$version_output" == *"latest"* ]]; then
     return 0
   fi
 
-  if ! current_version=$(terragrunt --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1); then
+  if ! current_version=$(echo "$version_output" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1); then
     echo "Warning: Could not determine terragrunt version. Proceeding anyway..." >&2
 
     return 0
