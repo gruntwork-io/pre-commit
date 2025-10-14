@@ -9,6 +9,6 @@ export PATH=$PATH:/usr/local/bin
 
 for file in "$@"; do
   pushd "$(dirname "$file")" >/dev/null
-  terragrunt hclfmt --file "$(basename "$file")"
+  terragrunt hcl fmt --file "$(basename "$file")"
   popd >/dev/null
 done
